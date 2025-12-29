@@ -53,9 +53,28 @@ optionWrapper.addEventListener("click", (event) => {
     selectedIndex
   );
 
-  
-  console.log(currentQuestion.id)
-  console.log(indexValue)
-   console.log(answers)
+  console.log(currentQuestion.id);
+  console.log(indexValue);
+  console.log(answers);
 });
 
+const nextButton = document.getElementById("next-button");
+nextButton.addEventListener("click", () => {
+  let currentQuestion = questions[currentIndex];
+
+  if (answers[currentQuestion.id] == null) {
+    alert("Pick an option");
+    return;
+  }
+  if (currentIndex < questions.length - 1) {
+    currentIndex++;
+    selectedIndex =  answers[currentQuestion.id] ?? null;
+    renderQuestion(
+      questions[currentIndex].text,
+      questions[currentIndex].options,
+      selectedIndex
+    );
+  } else {
+    alert("Finis Quiz");
+  }
+});
