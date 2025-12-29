@@ -1,1 +1,10 @@
+/** @format */
+
 @import "tailwindcss";
+
+.selected {
+  /* border: 1px solid red; */
+  background-color: #000000;
+  color: white;
+  font-weight: 500;
+}
