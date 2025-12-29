@@ -5,7 +5,7 @@ export function renderQuestion(questionText, optionArray, selectedIndex) {
   const optionWrapper = document.getElementById("option-wrapper");
 
   questionElement.textContent = questionText;
-  optionWrapper.replaceChildren()
+  optionWrapper.textContent = ""
 
   optionArray.forEach((option, index) => {
     const button = document.createElement("button");
