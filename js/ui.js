@@ -15,10 +15,13 @@ export function renderQuestion(questionText, optionArray, selectedIndex) {
     button.setAttribute("data-index", index);
 
     if (index === selectedIndex) {
-      button.classList.add("selected");
+      button.classList.toggle("selected");
     }
 
     // append each button that is created
     optionWrapper.appendChild(button);
   });
+
 }
+
+
