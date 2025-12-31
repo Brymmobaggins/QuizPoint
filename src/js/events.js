@@ -38,4 +38,15 @@ export function setupEventListeners() {
     setAnswer(currentQuestion.id, indexValue)
     renderCurrentQuestion(getCurrentIndex());
   });
+
+  const startQuizButton = document.getElementById("start-button")
+  startQuizButton.addEventListener("click", (e)=>{
+    console.log(e.target)
+
+    document.getElementById("setup-screen").classList.add("hidden")
+
+    // show quiz sectio
+    document.getElementById("quiz-section").classList.remove("hidden")
+
+  })
 }

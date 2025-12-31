@@ -1,45 +1,107 @@
 <!-- @format -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="font-sora text-xs md:text-sm lg:text-lg">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QuizPoint | Home</title>
     <link rel="stylesheet" href="../dist/styles.css" />
-    <script defer src="./js/main.js" type="module"></script>
-    <!-- <script defer src="/js/ui.js" type="module"></script> -->
+    <script defer src="/src/js/main.js" type="module"></script>
   </head>
   <body class="min-h-screen w-full">
     <!-- header -->
-    <header class="border-b border-neutral-700">
-      <div class="w-full mx-auto max-w-360 px-4 py-5">
+    <header class="border-b border-gray-500 w-full">
+      <div
+        class="flex flex-row justify-between items-center mx-auto max-w-360 px-4 py-5"
+      >
         <div class="">
-          <h1 class="text-base font-medium md:text-lg">QuizPoint</h1>
+          <h1 class="text-lg font-semibold md:text-4xl">QuizPoint</h1>
         </div>
       </div>
     </header>
 
-    <main>
-      <div>
-        <p id="progress"></p>
-      </div>
-      <!-- quiz section -->
-      <section class="container mx-auto flex flex-row border border-red-200" id="quiz-section">
-        <div class="" id="question-text"></div>
-        <div class="flex items-center gap-2" id="option-wrapper"></div>
-        <button class="border" id="next-button">Next</button>
+    <main class="mx-auto max-w-360 w-full">
+      <!-- set up section -->
+      <section>
+        <div
+          class="flex flex-row items-center justify-center gap-5 bg-gray-100 text-black mt-5 text-xs py-1.5 rounded"
+        >
+          <div>
+            <label for="Difficulties">Difficulties:</label>
+            <select name="" id="Difficulty">
+              <option value="easy">Easy</option>
+              <option value="hard">Hard</option>
+              <option value="Medium">Medium</option>
+            </select>
+          </div>
+          <div>
+            <label for="Category">Category:</label>
+            <select name="" id="category">
+              <option value="tech">Tech</option>
+              <option value="business">Business</option>
+              <option value="General">General</option>
+            </select>
+          </div>
+          <div>
+            <label>Number of Questions</label>
+            <input
+              type="number"
+              min="0"
+              max="20"
+              class="p-0.5 border border-gray-500 rounded"
+            />
+          </div>
+          <div class="">
+            <span>Timer</span>
+          </div>
+        </div>
       </section>
-      <!-- result section -->
-      <section id="result-section" class="container hidden">
-        <p id="score-message"></p>
-        <button class="border">Play Again</button>
-        <button class="border">Review Answers</button>
+      <section
+        class="absolute top-[30%] left-[50%] -translate-x-1/2 translate-y-1/2 max-w-120 w-full"
+      >
+        <div>
+          <p id="progress"></p>
+        </div>
+        <!-- start up screen -->
+         <div class="text-center" id="setup-screen">
+
+           <button class="text-white font-medium px-6 py-2 bg-blue-600 hover:bg-blue-500 shadow-sm rounded ring-2 transition" id="start-button">START QUIZ</button>
+         </div>
+        <!-- quiz section -->
+        <div class="border border-red-200 p-0.5 text-center hidden" id="quiz-section">
+          <div
+            class="text-black font-medium text-lg pb-5"
+            id="question-text"
+          ></div>
+
+          <div
+            class="flex flex-row justify-center w-full items-center text-nowrap gap-3 border border-yellow-200 mt-10"
+            id="option-wrapper"
+          ></div>
+          <button
+            class="border mt-5 px-2 py-0.5 bg-neutral-700 text-white font-medium rounded hover:cursor"
+            id="next-button"
+          >
+            Next
+          </button>
+        </div>
+
+        <!-- result section -->
+        <div
+          id="result-section"
+          class="text-center hidden border border-green-600"
+        >
+          <p id="score-message"></p>
+          <button class="border">Play Again</button>
+          <button class="border">Review Answers</button>
+        </div>
+        <!-- review section -->
+        <div class="hidden">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
+          non!
+        </div>
       </section>
-      <!-- review section -->
-      <div class="hidden">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, non!
-      </div>
     </main>
   </body>
 </html>

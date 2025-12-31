@@ -1,6 +1,14 @@
 /** @format */
 
-import { setSelectedIndex, getSelectedIndex, getAnswers, getQuestions, getCurrentIndex } from "./state.js";
+import {
+  setSelectedIndex,
+  getSelectedIndex,
+  getAnswers,
+  getQuestions,
+  getCurrentIndex,
+  questions,
+} from "./state.js";
+import { calculateScore } from "./utils.js";
 
 export function renderQuestion(questionText, optionArray, selectedIndex) {
   const questionElement = document.getElementById("question-text");
@@ -12,12 +20,14 @@ export function renderQuestion(questionText, optionArray, selectedIndex) {
   optionArray.forEach((option, index) => {
     const button = document.createElement("button");
     button.textContent = option;
-    button.className = "border px-2 py-1.5 rounded";
+    button.className = "border px-2 py-0.5 rounded text-sm";
     button.setAttribute("type", "button");
     button.setAttribute("data-index", index);
 
     if (index === selectedIndex) {
-      button.classList.toggle("selected");
+      button.classList.add("selected");
+    } else {
+      button.classList.remove("selected");
     }
 
     // append each button that is created
@@ -32,7 +42,7 @@ export function renderCurrentQuestion(index) {
   renderQuestion(currentQuestion.text, currentQuestion.options, selectedIndex);
   updateNextButtonLabel(index);
 }
-function updateNextButtonLabel(currentIndex) {
+export function updateNextButtonLabel(currentIndex) {
   const nextButton = document.getElementById("next-button");
 
   if (currentIndex === questions.length - 1) {
