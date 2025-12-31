@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QuizPoint | Home</title>
     <link rel="stylesheet" href="../dist/styles.css" />
-    <script defer src="/js/main.js" type="module"></script>
+    <script defer src="./js/main.js" type="module"></script>
     <!-- <script defer src="/js/ui.js" type="module"></script> -->
   </head>
   <body class="min-h-screen w-full">
@@ -24,7 +24,8 @@
       <div>
         <p id="progress"></p>
       </div>
-      <section class="container mx-auto flex flex-row border border-red-200">
+      <!-- quiz section -->
+      <section class="container mx-auto flex flex-row border border-red-200" id="quiz-section">
         <div class="" id="question-text"></div>
         <div class="flex items-center gap-2" id="option-wrapper"></div>
         <button class="border" id="next-button">Next</button>
@@ -36,7 +37,7 @@
         <button class="border">Review Answers</button>
       </section>
       <!-- review section -->
-      <div class="">
+      <div class="hidden">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, non!
       </div>
     </main>
