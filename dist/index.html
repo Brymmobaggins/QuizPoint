@@ -25,7 +25,8 @@
       <!-- set up section -->
       <section>
         <div
-          class="flex flex-row items-center justify-center gap-5 bg-gray-100 text-black mt-5 text-xs py-1.5 rounded"
+          class="flex flex-row items-center justify-center 
+          gap-5 bg-gray-100 text-black mt-5 text-sm  py-2 rounded"
         >
           <div>
             <label for="Difficulties">Difficulties:</label>
@@ -64,23 +65,27 @@
           <p id="progress"></p>
         </div>
         <!-- start up screen -->
-         <div class="text-center" id="setup-screen">
-
-           <button class="text-white font-medium px-6 py-2 bg-blue-600 hover:bg-blue-500 shadow-sm rounded ring-2 transition" id="start-button">START QUIZ</button>
-         </div>
+        <div class="text-center" id="setup-screen">
+          <button
+            class="text-white font-medium px-6 py-2 bg-blue-600 hover:bg-blue-500 shadow-sm rounded ring-2 transition"
+            id="start-button"
+          >
+            Start Quiz
+          </button>
+        </div>
         <!-- quiz section -->
-        <div class="border border-red-200 p-0.5 text-center hidden" id="quiz-section">
+        <div
+          class="w-full max-w-full border border-red-200 p-0.5 text-center absolute left-[-5%] right-[50%] hidden"
+          id="quiz-section"
+        >
           <div
             class="text-black font-medium text-lg pb-5"
             id="question-text"
           ></div>
 
-          <div
-            class="flex flex-row justify-center w-full items-center text-nowrap gap-3 border border-yellow-200 mt-10"
-            id="option-wrapper"
-          ></div>
+          <div class="flex text-nowrap gap-3 mt-10" id="option-wrapper"></div>
           <button
-            class="border mt-5 px-2 py-0.5 bg-neutral-700 text-white font-medium rounded hover:cursor"
+            class="border mt-5 px-1.5 py-2 bg-neutral-700 hover:bg-neutral-600 shadow-sm text-white font-medium rounded hover:cursor"
             id="next-button"
           >
             Next
@@ -90,11 +95,31 @@
         <!-- result section -->
         <div
           id="result-section"
-          class="text-center hidden border border-green-600"
+          class="text-center hidde  w-full max-w-full absolute hidden px-2"
         >
-          <p id="score-message"></p>
-          <button class="border">Play Again</button>
-          <button class="border">Review Answers</button>
+          <div class="w-full mt-2">
+            <img
+              class="block mx-auto w-1.2 h-12"
+              src="/assests/img/icon-completed.svg"
+              alt="check image"
+            />
+          </div>
+          <h2 class="font-bold mt-5">Quiz Completed!</h2>
+          <p class="mt-3" id="score-message"></p>
+          <div
+            class="flex justify-center items-center text-center mt-5 mb-3 gap-5"
+          >
+            <button
+              class="flex-1 border-0 rounded px-1.5 py-2 text-white bg-green-500 text-sm font-medium"
+            >
+              Go Again
+            </button>
+            <button
+              class="flex-1 border-0 rounded px-1.5 py-2 bg-black text-white text-sm font-medium"
+            >
+              Review Answers
+            </button>
+          </div>
         </div>
         <!-- review section -->
         <div class="hidden">

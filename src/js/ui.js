@@ -20,7 +20,7 @@ export function renderQuestion(questionText, optionArray, selectedIndex) {
   optionArray.forEach((option, index) => {
     const button = document.createElement("button");
     button.textContent = option;
-    button.className = "border px-2 py-0.5 rounded text-sm";
+    button.className = "border-none bg-gray-100 text-gray-200 font-medium px-2 py-0.5 rounded shadow-sm text-sm";
     button.setAttribute("type", "button");
     button.setAttribute("data-index", index);
 
@@ -46,7 +46,7 @@ export function updateNextButtonLabel(currentIndex) {
   const nextButton = document.getElementById("next-button");
 
   if (currentIndex === questions.length - 1) {
-    nextButton.textContent = "submit";
+    nextButton.textContent = "Submit";
   } else {
     nextButton.textContent = "Next";
   }

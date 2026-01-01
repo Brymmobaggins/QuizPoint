@@ -4,7 +4,8 @@ import {
   getCurrentIndex,
   setCurrentIndex,
   getQuestions,
-  setAnswer, getAnswers
+  setAnswer,
+  getAnswers,
 } from "./state.js";
 
 import { renderCurrentQuestion, showScoreResult } from "./ui.js";
@@ -32,21 +33,22 @@ export function setupEventListeners() {
     const btn = event.target.closest("button");
     if (!btn) return;
     let indexValue = Number(btn.dataset.index);
-    
-    let currentIndex = getCurrentIndex()
+
+    let currentIndex = getCurrentIndex();
     let currentQuestion = getQuestions()[currentIndex];
-    setAnswer(currentQuestion.id, indexValue)
+    setAnswer(currentQuestion.id, indexValue);
     renderCurrentQuestion(getCurrentIndex());
   });
 
-  const startQuizButton = document.getElementById("start-button")
-  startQuizButton.addEventListener("click", (e)=>{
-    console.log(e.target)
+  const startQuizButton = document.getElementById("start-button");
+  startQuizButton.addEventListener("click", (e) => {
+    console.log(e.target);
 
-    document.getElementById("setup-screen").classList.add("hidden")
+    document.getElementById("setup-screen").classList.add("hidden");
 
-    // show quiz sectio
-    document.getElementById("quiz-section").classList.remove("hidden")
+    // show quiz section
+    document.getElementById("quiz-section").classList.remove("hidden");
 
-  })
+    renderCurrentQuestion(getCurrentIndex());
+  });
 }
