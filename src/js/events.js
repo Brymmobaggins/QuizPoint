@@ -6,9 +6,14 @@ import {
   getQuestions,
   setAnswer,
   getAnswers,
+  setSelectedIndex,
 } from "./state.js";
 
-import { renderCurrentQuestion, showScoreResult } from "./ui.js";
+import {
+  renderCurrentQuestion,
+  showScoreResult,
+  updateNextButtonLabel,
+} from "./ui.js";
 
 export function setupEventListeners() {
   const nextButton = document.getElementById("next-button");
@@ -50,5 +55,29 @@ export function setupEventListeners() {
     document.getElementById("quiz-section").classList.remove("hidden");
 
     renderCurrentQuestion(getCurrentIndex());
+  });
+
+  const resetButton = document.getElementById("reset-btn");
+  resetButton.addEventListener("click", () => {
+    // set current index to zero
+    setCurrentIndex(0);
+
+    // clear the answers object
+    const answers = getAnswers();
+    Object.keys(answers).forEach((questionId) => {
+      setAnswer(questionId, null); // reset the question id to null
+    });
+
+    // reset selected index to null
+    setSelectedIndex(null);
+
+    // hidden result section
+    document.getElementById("result-section").classList.add("hidden");
+    // show quiz section
+    document.getElementById("quiz-section").classList.remove("hidden");
+
+    //
+    renderCurrentQuestion(getCurrentIndex());
+    updateNextButtonLabel(getCurrentIndex());
   });
 }

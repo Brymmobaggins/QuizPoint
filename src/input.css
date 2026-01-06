@@ -6,17 +6,32 @@
 
 @theme {
   --font-sora: "Sora", sans-serif;
-  --color-gray-200: #575c60;
   /* --bg-color: #f6f6f6; */
   --color-gray-100: #f1f2f3;
+  --color-gray-200: #575c60;
   --color-blue-600: hsl(214, 100%, 55%);
   --color-blue-400: hsl(210, 100%, 65%);
-  --color-green-500: hsl(140, 63%, 57%);
+  --color-green-500: #18864b;
 }
+
+/* 'alabaster': {
+    '50': '#fafafa',
+    '100': '#efefef',
+    '200': '#dcdcdc',
+    '300': '#bdbdbd',
+    '400': '#989898',
+    '500': '#7c7c7c',
+    '600': '#656565',
+    '700': '#525252',
+    '800': '#464646',
+    '900': '#3d3d3d',
+    '950': '#292929',
+}, */
+
 
 .selected {
   /* border: 1px solid red; */
-  background-color: #008000;
+  background-color: black;
   color: white;
   font-weight: 500;
   cursor: pointer;

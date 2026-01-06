@@ -26,7 +26,7 @@
       <section>
         <div
           class="flex flex-row items-center justify-center 
-          gap-5 bg-gray-100 text-black mt-5 text-sm  py-2 rounded"
+          gap-5 bg-gray-100 text-black mt-5 text-xs py-2 rounded md:text-sm"
         >
           <div>
             <label for="Difficulties">Difficulties:</label>
@@ -75,7 +75,7 @@
         </div>
         <!-- quiz section -->
         <div
-          class="w-full max-w-full border border-red-200 p-0.5 text-center absolute left-[-5%] right-[50%] hidden"
+          class="w-full max-w-full border border-gray-100 px-2 py-1.5 text-center absolute left-[-5%] right-[50%] rounded hidden"
           id="quiz-section"
         >
           <div
@@ -85,7 +85,8 @@
 
           <div class="flex text-nowrap gap-3 mt-10" id="option-wrapper"></div>
           <button
-            class="border mt-5 px-1.5 py-2 bg-neutral-700 hover:bg-neutral-600 shadow-sm text-white font-medium rounded hover:cursor"
+            class="mt-5 py-1.5 px-2 bg-green-500 hover:bg-green-600 
+            text-white text-sm font-medium rounded hover:cursor"
             id="next-button"
           >
             Next
@@ -95,7 +96,7 @@
         <!-- result section -->
         <div
           id="result-section"
-          class="text-center hidde  w-full max-w-full absolute hidden px-2"
+          class="text-center w-full max-w-full absolute hidden px-2"
         >
           <div class="w-full mt-2">
             <img
@@ -109,7 +110,7 @@
           <div
             class="flex justify-center items-center text-center mt-5 mb-3 gap-5"
           >
-            <button
+            <button id="reset-btn"
               class="flex-1 border-0 rounded px-1.5 py-2 text-white bg-green-500 text-sm font-medium"
             >
               Go Again
