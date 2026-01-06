@@ -25,8 +25,7 @@
       <!-- set up section -->
       <section>
         <div
-          class="flex flex-row items-center justify-center 
-          gap-5 bg-gray-100 text-black mt-5 text-xs py-2 rounded md:text-sm"
+          class="flex flex-row items-center justify-center gap-5 bg-gray-100 text-black mt-5 text-xs py-2 rounded md:text-sm"
         >
           <div>
             <label for="Difficulties">Difficulties:</label>
@@ -73,6 +72,16 @@
             Start Quiz
           </button>
         </div>
+        <!--  -->
+        <div
+          id="alert-box"
+          class="hidden fixed z-1000
+           w-full text-yellow-600 
+          -top-8 left-[45%] -translate-x-[50%] 
+            p-1.5 text-sm"
+        >
+          <p id="alert-message"></p>
+        </div>
         <!-- quiz section -->
         <div
           class="w-full max-w-full border border-gray-100 px-2 py-1.5 text-center absolute left-[-5%] right-[50%] rounded hidden"
@@ -85,8 +94,7 @@
 
           <div class="flex text-nowrap gap-3 mt-10" id="option-wrapper"></div>
           <button
-            class="mt-5 py-1.5 px-2 bg-green-500 hover:bg-green-600 
-            text-white text-sm font-medium rounded hover:cursor"
+            class="mt-5 py-1.5 px-2 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded hover:cursor"
             id="next-button"
           >
             Next
@@ -110,7 +118,8 @@
           <div
             class="flex justify-center items-center text-center mt-5 mb-3 gap-5"
           >
-            <button id="reset-btn"
+            <button
+              id="reset-btn"
               class="flex-1 border-0 rounded px-1.5 py-2 text-white bg-green-500 text-sm font-medium"
             >
               Go Again

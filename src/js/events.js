@@ -11,6 +11,7 @@ import {
 
 import {
   renderCurrentQuestion,
+  showAlert,
   showScoreResult,
   updateNextButtonLabel,
 } from "./ui.js";
@@ -22,8 +23,7 @@ export function setupEventListeners() {
     let currentQuestion = getQuestions()[currentIndex];
 
     if (getAnswers()[currentQuestion.id] == null) {
-      alert("Pick an option");
-      return;
+      return showAlert("Pick an option");
     }
     if (currentIndex < getQuestions().length - 1) {
       setCurrentIndex(currentIndex + 1);

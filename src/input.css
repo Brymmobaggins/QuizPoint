@@ -12,7 +12,24 @@
   --color-blue-600: hsl(214, 100%, 55%);
   --color-blue-400: hsl(210, 100%, 65%);
   --color-green-500: #18864b;
+  --color-yellow-100: #f4ffc1;
+  --color-red-500: #ff0000;
+  --color-orange: #f7c87a;
 }
+
+/* 'yellow': {
+    '50': '#fbffe7',
+    '100': '#f4ffc1',
+    '200': '#eeff86',
+    '300': '#ecff41',
+    '400': '#f2ff0d',
+    '500': '#ffff00',
+    '600': '#d1bf00',
+    '700': '#a68b02',
+    '800': '#896c0a',
+    '900': '#74580f',
+    '950': '#443004',
+}, */
 
 /* 'alabaster': {
     '50': '#fafafa',
@@ -27,7 +44,6 @@
     '900': '#3d3d3d',
     '950': '#292929',
 }, */
-
 
 .selected {
   /* border: 1px solid red; */

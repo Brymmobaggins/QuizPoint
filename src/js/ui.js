@@ -1,11 +1,8 @@
 /** @format */
 
 import {
-  setSelectedIndex,
-  getSelectedIndex,
   getAnswers,
   getQuestions,
-  getCurrentIndex,
   questions,
 } from "./state.js";
 import { calculateScore } from "./utils.js";
@@ -20,7 +17,8 @@ export function renderQuestion(questionText, optionArray, selectedIndex) {
   optionArray.forEach((option, index) => {
     const button = document.createElement("button");
     button.textContent = option;
-    button.className = "border-0 border-gray-100 bg-gray-100 text-gray-200 font-medium px-2 py-0.5 rounded shadow-sm text-sm";
+    button.className =
+      "border-0 border-gray-100 bg-gray-100 text-gray-200 font-medium px-2 py-0.5 rounded shadow-sm text-sm";
     button.setAttribute("type", "button");
     button.setAttribute("data-index", index);
 
@@ -71,4 +69,22 @@ export function showScoreResult() {
   document.getElementById("quiz-section").classList.add("hidden");
   document.getElementById("result-section").classList.remove("hidden");
   scoreMessage.textContent = `You scored ${score} out of ${questions.length} questions, ${message}`;
+}
+
+export function showAlert(message) {
+  const alertDiv = document.getElementById("alert-box");
+  let messageEl = document.getElementById("alert-message");
+
+  // remove any existing alert
+  alertDiv.classList.add("hidden");
+
+  //  set the message and show the alert
+  messageEl.textContent = message;
+  alertDiv.classList.remove("hidden");
+
+
+  // disappear in 2 seconds
+  setTimeout(() => {
+    alertDiv.classList.add("hidden");
+  }, 2000);
 }
