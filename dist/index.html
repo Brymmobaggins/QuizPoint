@@ -52,8 +52,20 @@
               class="p-0.5 border border-gray-500 rounded"
             />
           </div>
-          <div class="">
+          <div
+            class="toggle-switch-container flex justify-center items-center gap-2"
+          >
             <span>Timer</span>
+            <input type="checkbox" id="status-toggle" class="toggle-checkbox" />
+            <label for="status-toggle" class="toggle-label">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div id="question-timer">
+            Time left <span id="time-left">00:30</span>
+          </div>
+          <div id="total-timer">
+            total-timer <span id="total-time"> 00:00 </span>
           </div>
         </div>
       </section>
@@ -75,10 +87,7 @@
         <!--  -->
         <div
           id="alert-box"
-          class="hidden fixed z-1000
-           w-full text-yellow-600 
-          -top-8 left-[45%] -translate-x-[50%] 
-            p-1.5 text-sm"
+          class="hidden fixed z-1000 w-full text-yellow-600 -top-8 left-[45%] -translate-x-[50%] p-1.5 text-sm"
         >
           <p id="alert-message"></p>
         </div>

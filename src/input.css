@@ -44,7 +44,44 @@
     '900': '#3d3d3d',
     '950': '#292929',
 }, */
+/* hide default */
+.toggle-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+/* style the label to act as switch background */
 
+.toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 30px;
+  border-radius: 34px; /* to create a pills shape */
+  cursor: pointer;
+  background-color: #ccc;
+  transition: background-color 0.4s;
+}
+/* slider the moving part */
+.slider {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 26px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: transform 0.4s;
+}
+.toggle-checkbox:checked + .toggle-label{
+  background-color: var(--color-blue-600); /* Blue background for "on" state */
+
+}
+.toggle-checkbox:checked + .toggle-label .slider {
+  transform: translateX(26px); /* Adjust the value based on width and height */
+}
 .selected {
   /* border: 1px solid red; */
   background-color: black;

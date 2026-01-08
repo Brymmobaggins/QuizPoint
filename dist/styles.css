@@ -8,15 +8,11 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-orange-50: oklch(98% 0.016 73.684);
-    --color-orange-600: oklch(64.6% 0.222 41.116);
     --color-yellow-600: oklch(68.1% 0.162 75.834);
     --color-green-500: #18864b;
     --color-green-600: oklch(62.7% 0.194 149.214);
     --color-blue-500: oklch(62.3% 0.214 259.815);
     --color-blue-600: hsl(214, 100%, 55%);
-    --color-slate-400: oklch(70.4% 0.04 256.788);
-    --color-slate-500: oklch(55.4% 0.046 257.417);
     --color-gray-100: #f1f2f3;
     --color-gray-200: #575c60;
     --color-gray-500: oklch(55.1% 0.027 264.364);
@@ -39,7 +35,6 @@
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --font-sora: "Sora", sans-serif;
-    --color-orange: #f7c87a;
   }
 }
 @layer base {
@@ -218,8 +213,35 @@
   .z-1000 {
     z-index: 1000;
   }
+  .container {
+    width: 100%;
+    @media (width >= 40rem) {
+      max-width: 40rem;
+    }
+    @media (width >= 48rem) {
+      max-width: 48rem;
+    }
+    @media (width >= 64rem) {
+      max-width: 64rem;
+    }
+    @media (width >= 80rem) {
+      max-width: 80rem;
+    }
+    @media (width >= 96rem) {
+      max-width: 96rem;
+    }
+  }
   .mx-auto {
     margin-inline: auto;
+  }
+  .ms-2 {
+    margin-inline-start: calc(var(--spacing) * 2);
+  }
+  .me-2 {
+    margin-inline-end: calc(var(--spacing) * 2);
+  }
+  .me-auto {
+    margin-inline-end: auto;
   }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
@@ -232,6 +254,9 @@
   }
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
+  }
+  .mb-1 {
+    margin-bottom: calc(var(--spacing) * 1);
   }
   .mb-3 {
     margin-bottom: calc(var(--spacing) * 3);
@@ -292,6 +317,9 @@
     --tw-translate-y: calc(1/2 * 100%);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
+  .transform {
+    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
   .resize {
     resize: both;
   }
@@ -307,11 +335,17 @@
   .justify-center {
     justify-content: center;
   }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
   .gap-5 {
     gap: calc(var(--spacing) * 5);
+  }
+  .gap-8 {
+    gap: calc(var(--spacing) * 8);
   }
   .rounded {
     border-radius: 0.25rem;
@@ -324,10 +358,6 @@
     border-style: var(--tw-border-style);
     border-width: 0px;
   }
-  .border-2 {
-    border-style: var(--tw-border-style);
-    border-width: 2px;
-  }
   .border-b {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
@@ -337,9 +367,6 @@
   }
   .border-gray-500 {
     border-color: var(--color-gray-500);
-  }
-  .border-slate-500 {
-    border-color: var(--color-slate-500);
   }
   .bg-black {
     background-color: var(--color-black);
@@ -352,9 +379,6 @@
   }
   .bg-green-500 {
     background-color: var(--color-green-500);
-  }
-  .bg-orange-50 {
-    background-color: var(--color-orange-50);
   }
   .p-0 {
     padding: calc(var(--spacing) * 0);
@@ -446,12 +470,6 @@
   .text-gray-200 {
     color: var(--color-gray-200);
   }
-  .text-orange {
-    color: var(--color-orange);
-  }
-  .text-orange-600 {
-    color: var(--color-orange-600);
-  }
   .text-white {
     color: var(--color-white);
   }
@@ -511,6 +529,39 @@
     }
   }
 }
+.toggle-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 30px;
+  border-radius: 34px;
+  cursor: pointer;
+  background-color: #ccc;
+  transition: background-color 0.4s;
+}
+.slider {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 26px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: transform 0.4s;
+}
+.toggle-checkbox:checked + .toggle-label {
+  background-color: var(--color-blue-600);
+}
+.toggle-checkbox:checked + .toggle-label .slider {
+  transform: translateX(26px);
+}
 .selected {
   background-color: black;
   color: white;
@@ -545,6 +596,26 @@ select {
   syntax: "*";
   inherits: false;
   initial-value: 0;
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
 }
 @property --tw-border-style {
   syntax: "*";
@@ -631,6 +702,11 @@ select {
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-font-weight: initial;
       --tw-shadow: 0 0 #0000;

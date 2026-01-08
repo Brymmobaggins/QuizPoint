@@ -1,10 +1,6 @@
 /** @format */
 
-import {
-  getAnswers,
-  getQuestions,
-  questions,
-} from "./state.js";
+import { getAnswers, getQuestions, questions } from "./state.js";
 import { calculateScore } from "./utils.js";
 
 export function renderQuestion(questionText, optionArray, selectedIndex) {
@@ -82,9 +78,16 @@ export function showAlert(message) {
   messageEl.textContent = message;
   alertDiv.classList.remove("hidden");
 
-
   // disappear in 2 seconds
   setTimeout(() => {
     alertDiv.classList.add("hidden");
   }, 2000);
 }
+export function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remaingSeconds = seconds % 60;
+  return `${minutes.toString().padStart(2, "0")}:${remaingSeconds
+    .toString()
+    .padStart(2, "0")}`;
+}
+console.log(formatTime(45));
