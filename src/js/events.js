@@ -14,10 +14,19 @@ import {
   showAlert,
   showScoreResult,
   updateNextButtonLabel,
+  startQuestionTimer,
+  startTotalTimer,
+  stopTimers,
+  questionTimeLeft,
+  formatTime,
 } from "./ui.js";
 
 export function setupEventListeners() {
+  const startQuizButton = document.getElementById("start-button");
+  const optionWrapper = document.getElementById("option-wrapper");
   const nextButton = document.getElementById("next-button");
+  const resetButton = document.getElementById("reset-btn");
+
   nextButton.addEventListener("click", () => {
     let currentIndex = getCurrentIndex();
     let currentQuestion = getQuestions()[currentIndex];
@@ -29,11 +38,12 @@ export function setupEventListeners() {
       setCurrentIndex(currentIndex + 1);
       renderCurrentQuestion(currentIndex + 1);
     } else {
+      stopTimers()
       showScoreResult();
     }
   });
 
-  const optionWrapper = document.getElementById("option-wrapper");
+  
   optionWrapper.addEventListener("click", (event) => {
     const btn = event.target.closest("button");
     if (!btn) return;
@@ -45,19 +55,21 @@ export function setupEventListeners() {
     renderCurrentQuestion(getCurrentIndex());
   });
 
-  const startQuizButton = document.getElementById("start-button");
+  
   startQuizButton.addEventListener("click", (e) => {
     console.log(e.target);
 
+    // hide set up screen and show quiz
     document.getElementById("setup-screen").classList.add("hidden");
-
-    // show quiz section
     document.getElementById("quiz-section").classList.remove("hidden");
+
+    startQuestionTimer();
+    startTotalTimer();
 
     renderCurrentQuestion(getCurrentIndex());
   });
 
-  const resetButton = document.getElementById("reset-btn");
+  
   resetButton.addEventListener("click", () => {
     // set current index to zero
     setCurrentIndex(0);
@@ -68,15 +80,23 @@ export function setupEventListeners() {
       setAnswer(questionId, null); // reset the question id to null
     });
 
+    // reset both timer
+    stopTimers();
+      
+    // questionTimeLeft = QUESTION_TIME_DEFAULT;
+
+    document.getElementById("time-left").textContent =
+      formatTime(questionTimeLeft);
+
     // reset selected index to null
     setSelectedIndex(null);
 
     // hidden result section
     document.getElementById("result-section").classList.add("hidden");
+
     // show quiz section
     document.getElementById("quiz-section").classList.remove("hidden");
 
-    //
     renderCurrentQuestion(getCurrentIndex());
     updateNextButtonLabel(getCurrentIndex());
   });

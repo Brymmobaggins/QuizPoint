@@ -3,6 +3,7 @@
 // resuabale function
 import { getQuestions, getAnswers } from "./state.js";
 
+
 export function calculateScore() {
   let score = 0;
   getQuestions().forEach((question) => {
@@ -12,3 +13,5 @@ export function calculateScore() {
   });
   return score;
 }
+
+

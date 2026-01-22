@@ -4,6 +4,7 @@ let selectedIndex = null;
 let currentIndex = 0;
 let answers = {};
 
+
 export const questions = [
   {
     id: "q1",

@@ -1,7 +1,19 @@
 /** @format */
 
-import { getAnswers, getQuestions, questions } from "./state.js";
+import {
+  getAnswers,
+  getQuestions,
+  questions,
+  getCurrentIndex,
+  setCurrentIndex,
+} from "./state.js";
+
 import { calculateScore } from "./utils.js";
+export let totalTimeElapsed = 0;
+export let questionTimeLeft = 30;
+
+export let questionTimerInterval;
+export let totalTimerInterval;
 
 export function renderQuestion(questionText, optionArray, selectedIndex) {
   const questionElement = document.getElementById("question-text");
@@ -41,6 +53,7 @@ export function updateNextButtonLabel(currentIndex) {
 
   if (currentIndex === questions.length - 1) {
     nextButton.textContent = "Submit";
+    
   } else {
     nextButton.textContent = "Next";
   }
@@ -83,6 +96,50 @@ export function showAlert(message) {
     alertDiv.classList.add("hidden");
   }, 2000);
 }
+export function nextQuestion() {
+  clearInterval(questionTimerInterval); // stop the current question timer
+
+  // move to next question
+  if (getCurrentIndex < getQuestions().length - 1) {
+    setCurrentIndex(getCurrentIndex + 1);
+    renderCurrentQuestion(getCurrentIndex());
+    
+    startQuestionTimer(); // Restart the timer for the next question
+  } else {
+    stopTimers(); // stop both time when quiz is finish
+
+
+    showScoreResult(); // show final result
+  }
+}
+
+// function to start the question timer
+export function startQuestionTimer() {
+  questionTimerInterval = setInterval(() => {
+    if (questionTimeLeft === 0) {
+      nextQuestion();
+    }
+    if (questionTimeLeft > 0) {
+      questionTimeLeft--; // decrease by 1 second
+      document.getElementById("time-left").textContent =
+        formatTime(questionTimeLeft);
+    } else {
+      // if time runs out, move to the next question ( or submit it if it's the last question)
+      nextQuestion();
+    }
+  }, 1000);
+}
+
+// function to start the total timer ( for the entire quiz)
+export function startTotalTimer() {
+  totalTimerInterval = setInterval(() => {
+    totalTimeElapsed++; // mcrease the total time by 1 second
+    document.getElementById("total-time").textContent =
+      formatTime(totalTimeElapsed);
+  }, 1000);
+}
+
+// helper function to convert time (seconds to mm:ss format)
 export function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remaingSeconds = seconds % 60;
@@ -90,4 +147,8 @@ export function formatTime(seconds) {
     .toString()
     .padStart(2, "0")}`;
 }
-console.log(formatTime(45));
+// function to stop the both timer
+export function stopTimers() {
+  clearInterval(questionTimerInterval); // stop the question timer
+  clearInterval(totalTimerInterval); // stop the total timer
+}
