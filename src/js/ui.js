@@ -11,9 +11,13 @@ import {
 import { calculateScore } from "./utils.js";
 export let totalTimeElapsed = 0;
 export let questionTimeLeft = 30;
-
 export let questionTimerInterval;
 export let totalTimerInterval;
+
+
+export let QUESTION_TIME_DEFAULT = 30
+
+
 
 export function renderQuestion(questionText, optionArray, selectedIndex) {
   const questionElement = document.getElementById("question-text");
@@ -133,7 +137,7 @@ export function startQuestionTimer() {
 // function to start the total timer ( for the entire quiz)
 export function startTotalTimer() {
   totalTimerInterval = setInterval(() => {
-    totalTimeElapsed++; // mcrease the total time by 1 second
+    totalTimeElapsed++; // increase the total time by 1 second
     document.getElementById("total-time").textContent =
       formatTime(totalTimeElapsed);
   }, 1000);
@@ -150,5 +154,20 @@ export function formatTime(seconds) {
 // function to stop the both timer
 export function stopTimers() {
   clearInterval(questionTimerInterval); // stop the question timer
+  clearInterval(totalTimerInterval); // stop the total timer
+}
+
+export function resetTimers(){
+
+  totalTimeElapsed = 0
+  questionTimeLeft = QUESTION_TIME_DEFAULT
+  
+  // update the UI to reflect  the reset time
+  document.getElementById("time-left").textContent = formatTime(QUESTION_TIME_DEFAULT)
+  document.getElementById("total-time").textContent = "00:00"
+
+
+  // clear any existing intervals
+   clearInterval(questionTimerInterval); // stop the question timer
   clearInterval(totalTimerInterval); // stop the total timer
 }

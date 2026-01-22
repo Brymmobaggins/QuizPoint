@@ -17,15 +17,14 @@ import {
   startQuestionTimer,
   startTotalTimer,
   stopTimers,
-  questionTimeLeft,
-  formatTime,
+  resetTimers
 } from "./ui.js";
 
 export function setupEventListeners() {
   const startQuizButton = document.getElementById("start-button");
   const optionWrapper = document.getElementById("option-wrapper");
   const nextButton = document.getElementById("next-button");
-  const resetButton = document.getElementById("reset-btn");
+  const retakeButton = document.getElementById("reset-btn");
 
   nextButton.addEventListener("click", () => {
     let currentIndex = getCurrentIndex();
@@ -70,7 +69,7 @@ export function setupEventListeners() {
   });
 
   
-  resetButton.addEventListener("click", () => {
+  retakeButton.addEventListener("click", () => {
     // set current index to zero
     setCurrentIndex(0);
 
@@ -80,14 +79,16 @@ export function setupEventListeners() {
       setAnswer(questionId, null); // reset the question id to null
     });
 
+    // stop timer
+    stopTimers()
+
     // reset both timer
-    stopTimers();
-      
-    // questionTimeLeft = QUESTION_TIME_DEFAULT;
+    resetTimers()
+    
+    startTotalTimer() // start total time to run fresh
+    startQuestionTimer() // start question time to run fresh
 
-    document.getElementById("time-left").textContent =
-      formatTime(questionTimeLeft);
-
+ 
     // reset selected index to null
     setSelectedIndex(null);
 
